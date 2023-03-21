@@ -19,16 +19,18 @@ export default function Home() {
           {data.map((datum, index) => {
             return (
               <Link
-                className="p-6 border border-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-100"
+                className="cursor-pointer"
                 key={index}
                 href={`/${datum.name}`}
               >
-                <div className="mb-3">
-                  <h1 className="font-bold text-xl">{datum.name}</h1>
-                  <h2>{datum.genre}</h2>
-                  <h3 className="text-gray-400">{datum.productionYear}</h3>
+                <div className="h-full p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                  <div className="mb-3">
+                    <h1 className="font-bold text-xl">{datum.name}</h1>
+                    <h2>{datum.genre}</h2>
+                    <h3 className="text-gray-400">{datum.productionYear}</h3>
+                  </div>
+                  <p className="">{datum.synopsisShort}</p>
                 </div>
-                <p className="">{datum.synopsisShort}</p>
               </Link>
             );
           })}
