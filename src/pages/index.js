@@ -1,7 +1,6 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import data from "@/fixtures/data.js";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -15,7 +14,26 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icons8-circled-play-96.png" />
       </Head>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <main className="p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {data.map((datum, index) => {
+            return (
+              <Link
+                className="p-6 border border-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-100"
+                key={index}
+                href={`/${datum.name}`}
+              >
+                <div className="mb-3">
+                  <h1 className="font-bold text-xl">{datum.name}</h1>
+                  <h2>{datum.genre}</h2>
+                  <h3 className="text-gray-400">{datum.productionYear}</h3>
+                </div>
+                <p className="">{datum.synopsisShort}</p>
+              </Link>
+            );
+          })}
+        </div>
+      </main>
     </>
   );
 }
