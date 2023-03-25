@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Layout from "@/components/Layout.js";
 
 const Page = ({ title, children }) => {
   const pageTitle = title ? `${title} | Movies` : `Movies`;
@@ -14,7 +15,9 @@ const Page = ({ title, children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icons8-circled-play-96.png" />
       </Head>
-      <main className="container mx-auto px-6">{children}</main>
+      <main className="container mx-auto px-6">
+        <Layout>{children}</Layout>
+      </main>
     </>
   );
 };
