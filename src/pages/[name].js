@@ -1,12 +1,17 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import data from "@/fixtures/data.js";
+import { useContext } from "react";
+import { MoviesData } from "@/context/movies.js";
 
 export default function MovieDetails() {
+  const { isLoading, hasError, movies } = useContext(MoviesData);
   const router = useRouter();
-  const name = router.query.name;
-  const movie = data.find((datum) => datum.name == name);
 
+  if (isLoading) return <main>Loading...</main>;
+  if (!isLoading && hasError) return <main>An error occurred.</main>;
+
+  const name = router.query.name;
+  const movie = movies.find((movie) => movie.name == name);
   if (!movie) return <main>Movie not found.</main>;
 
   const parsedSynopsis = movie.synopsis.replaceAll("<br />", "\n");
