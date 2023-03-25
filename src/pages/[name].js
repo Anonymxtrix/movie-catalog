@@ -9,7 +9,7 @@ export default function MovieDetails() {
   const router = useRouter();
 
   if (isLoading) return <main>Loading...</main>;
-  if (!isLoading && hasError) return <main>An error occurred.</main>;
+  if (hasError) return <main>An error occurred.</main>;
 
   const name = router.query.name;
   const movie = movies.find((movie) => movie.name == name);
