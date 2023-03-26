@@ -63,6 +63,9 @@ const Multiselect = (props) => {
                   type="checkbox"
                   checked={isChecked[index]}
                   onChange={() => handleToggleCheckbox(index)}
+                  onKeyUp={(event) => {
+                    if (event.key == "Enter") handleToggleCheckbox(index);
+                  }}
                 />
                 <label className="ml-2 cursor-pointer">{option}</label>
               </div>
