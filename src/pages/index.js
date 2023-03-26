@@ -4,13 +4,14 @@ import { useContext, useState } from "react";
 import { MoviesData } from "@/context/movies.js";
 import Page from "@/components/Page.js";
 import Multiselect from "@/components/Multiselect.js";
+import FullPageLoading from "@/components/FullPageLoading.js";
 
 export default function Home() {
   const { isLoading, hasError, movies } = useContext(MoviesData);
   const [selectedGenres, setSelectedGenres] = useState(null);
   const [selectedYears, setSelectedYears] = useState(null);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <FullPageLoading />;
   if (hasError) return <p>An error occurred.</p>;
 
   const genres = [...new Set(movies.map((movie) => movie.genre))].sort();

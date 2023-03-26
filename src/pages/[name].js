@@ -3,12 +3,13 @@ import Image from "next/image";
 import { useContext } from "react";
 import { MoviesData } from "@/context/movies.js";
 import Page from "@/components/Page.js";
+import FullPageLoading from "@/components/FullPageLoading";
 
 export default function MovieDetails() {
   const { isLoading, hasError, movies } = useContext(MoviesData);
   const router = useRouter();
 
-  if (isLoading) return <main>Loading...</main>;
+  if (isLoading) return <FullPageLoading />;
   if (hasError) return <main>An error occurred.</main>;
 
   const name = router.query.name;
