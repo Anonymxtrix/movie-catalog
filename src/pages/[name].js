@@ -19,13 +19,6 @@ export default function MovieDetails() {
 
   return (
     <Page title={name}>
-      <Link href={`..`}>
-        <div className="mb-3">
-          <button className="px-4 py-2 rounded border border-gray-200 shadow hover:hover:bg-gray-100">
-            back
-          </button>
-        </div>
-      </Link>
       <div className="mb-3">
         <h1 className="font-bold text-2xl">{movie.name}</h1>
         <p>{movie.genre}</p>
