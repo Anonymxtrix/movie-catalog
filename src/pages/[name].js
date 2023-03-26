@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
+import Image from "next/image";
 import { useContext } from "react";
 import { MoviesData } from "@/context/movies.js";
 import Page from "@/components/Page.js";
@@ -13,7 +13,22 @@ export default function MovieDetails() {
 
   const name = router.query.name;
   const movie = movies.find((movie) => movie.name == name);
-  if (!movie) return <main>Movie not found.</main>;
+  if (!movie)
+    return (
+      <Page title="Not Foud">
+        <div className="mt-40 flex flex-col items-center justify-center">
+          <Image
+            src="/undraw_page_not_found_re_e9o6.svg"
+            alt="No Movies"
+            width={400}
+            height={266}
+          />
+          <h1 className="mt-6 text-bold text-2xl text-gray-400">
+            Oops, movie was not found...
+          </h1>
+        </div>
+      </Page>
+    );
 
   const parsedSynopsis = movie.synopsis.replaceAll("<br />", "\n");
 
