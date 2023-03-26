@@ -63,6 +63,7 @@ const Multiselect = (props) => {
                   type="checkbox"
                   checked={isChecked[index]}
                   onChange={() => handleToggleCheckbox(index)}
+                  onClick={() => handleToggleCheckbox(index)}
                   onKeyUp={(event) => {
                     if (event.key == "Enter") handleToggleCheckbox(index);
                   }}
