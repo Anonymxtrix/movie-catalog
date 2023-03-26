@@ -1,18 +1,57 @@
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MoviesData } from "@/context/movies.js";
 import Page from "@/components/Page.js";
+import Multiselect from "@/components/Multiselect.js";
 
 export default function Home() {
   const { isLoading, hasError, movies } = useContext(MoviesData);
+  const [selectedGenres, setSelectedGenres] = useState(null);
+  const [selectedYears, setSelectedYears] = useState(null);
 
   if (isLoading) return <p>Loading...</p>;
   if (hasError) return <p>An error occurred.</p>;
 
+  const genres = [...new Set(movies.map((movie) => movie.genre))].sort();
+  const years = [...new Set(movies.map((movie) => movie.productionYear))].sort(
+    (a, b) => b - a
+  );
+  const filteredMoves = movies
+    .filter((movie) => {
+      if (!selectedGenres) return true;
+      return selectedGenres.has(movie.genre);
+    })
+    .filter((movie) => {
+      if (!selectedYears) return true;
+      return selectedYears.has(movie.productionYear);
+    })
+    .sort((a, b) => b.productionYear - a.productionYear);
+
+  const handleGenreFilterChange = (selectedGenres) => {
+    setSelectedGenres(new Set(selectedGenres));
+  };
+
+  const handleYearFilterChange = (selectedYears) => {
+    setSelectedYears(new Set(selectedYears));
+  };
+
   return (
     <Page title="Home">
+      <div className="mb-3 flex">
+        <Multiselect
+          buttonLabel="Genre"
+          options={genres}
+          onChange={handleGenreFilterChange}
+        />
+        <Multiselect
+          className="ml-3"
+          buttonLabel="Production Year"
+          options={years}
+          onChange={handleYearFilterChange}
+        />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {movies.map((movie, index) => {
+        {filteredMoves.map((movie, index) => {
           return (
             <Link
               className="cursor-pointer"
