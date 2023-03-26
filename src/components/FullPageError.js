@@ -6,11 +6,12 @@ const FullPageError = () => {
       <Image
         src="/undraw_server_down_s-4-lk.svg"
         alt="Error"
-        height={800}
-        width={400}
+        height={188}
+        width={300}
       />
       <h1 className="mt-6 text-bold text-2xl text-gray-400">
-        Oops, an error occurred. Try refreshing the page.
+        Oops, an error occurred. <br />
+        Try refreshing the page.
       </h1>
     </div>
   );
