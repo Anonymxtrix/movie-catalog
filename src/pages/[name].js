@@ -18,12 +18,12 @@ export default function MovieDetails() {
   if (!movie)
     return (
       <Page title="Not Foud">
-        <div className="mt-40 flex flex-col items-center justify-center">
+        <div className="mt-32 flex flex-col items-center justify-center">
           <Image
             src="/undraw_page_not_found_re_e9o6.svg"
             alt="No Movies"
-            width={400}
-            height={266}
+            width={300}
+            height={200}
           />
           <h1 className="mt-6 text-bold text-2xl text-gray-400">
             Oops, movie was not found...
